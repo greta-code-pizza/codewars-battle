@@ -18,6 +18,7 @@ class Hello extends Component {
       axios.get(`https://www.codewars.com/api/v1/users/${kercode}`)
       .then(res => {
         res.header("Access-Control-Allow-Origin", "*");
+        console.log(res.data);
         let currentHonor = res.data.honor;
         this.setState({
           honors: honors + currentHonor
