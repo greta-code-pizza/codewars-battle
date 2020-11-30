@@ -14,18 +14,12 @@ class Hello extends Component {
 
   componentDidMount() {
     let {honors} = this.state;
+
     Kercodes.kercodes.forEach(kercode => {
       axios.get(`https://www.codewars.com/api/v1/users/${kercode}`)
       .then(res => {
-        res.header("Access-Control-Allow-Origin", "*");
-        res.header('Access-Control-Request-Method', '*');
-        res.header('Access-Control-Allow-Methods', 'OPTIONS, GET');
-        res.header('Access-Control-Allow-Headers', '*');
-        console.log(res.data);
         let currentHonor = res.data.honor;
-        this.setState({
-          honors: honors + currentHonor
-        }) 
+        this.setState(prevstate => ({ honors: prevstate.honors + currentHonor})) 
       })  
     });
 
